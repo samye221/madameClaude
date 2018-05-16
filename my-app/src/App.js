@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ButtonFilterFemale from './Components/buttonFilterFemale'
 import './App.css';
 
 class App extends Component{ 
@@ -31,6 +32,7 @@ render(){
   return(
   <div className= "container">
     {this.state.profiles}
+    <ButtonFilterFemale/>
   </div>
   )
 }
