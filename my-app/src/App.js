@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 // import Form from './Components/buttonFilterFemale'
 import Filter from './Filter'
+// import HomePage from './Components/homepage'
 import './App.css'
 
 class App extends Component{ 
   state = {
+    pageActive: 'home',
     isToggleOn: true,
     profiles: [],
     filters: {
@@ -13,6 +15,9 @@ class App extends Component{
       eyeColor: undefined
     }
   }
+
+
+
 
   toggleFilter = (type, value) => this.setState({
     [type]: this.state[type] === value ? undefined : value
@@ -72,29 +77,37 @@ class App extends Component{
     console.log(this.state.skinColor)
     console.log(this.state.eyeColor)
 
+    if (this.state.pageActive === 'home')
+      return (
+        <div>
+          <h1>Welcome Weary Traveller. 
+  I am Madame Claude and you are about to enter my Intergalactic Palace of Pleasure. Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. Now relax, take it easy and come inside.</h1>
+          <button onClick={() => this.setState({pageActive: 'oiehfohz'})} class="btnEnter">Enter the Palace of Pleasure</button>
+        </div>
+      )
+    else 
+      return (
+        <div className= "container">
+          <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="male" />
+          <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="female" />
+          <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="everything">
+          Everything
+          </Filter>
+          <br/>
+          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="light" />
+          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="dark" />
+          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="otherSkinColor">
+            Surprise me !
+          </Filter>
+          <br/>
+          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="brown" />
+          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="blue" />
+          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="otherEyeColor">
+            Surprise me !
+          </Filter>
 
-    return (
-      <div className= "container">
-        <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="male" />
-        <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="female" />
-        <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="everything">
-        Everything
-        </Filter>
-        <br/>
-        <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="light" />
-        <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="dark" />
-        <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="otherSkinColor">
-          Surprise me !
-        </Filter>
-        <br/>
-        <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="brown" />
-        <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="blue" />
-        <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="otherEyeColor">
-          Surprise me !
-        </Filter>
-
-        {profiles.length > 0 ? profiles : 'What do you like my dear'}
-      </div>
+          {profiles.length > 0 ? profiles : 'What do you like my dear'}
+        </div>
     )
   }
 
