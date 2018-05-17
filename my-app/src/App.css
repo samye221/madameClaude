@@ -34,3 +34,15 @@ h1 {
   background-color: rgba(255, 255, 255, 0.3);
   transition: ease-in 0.2s;
 }
+
+.clip-circle {
+  background:url(https://cdn.radiofrance.fr/s3/cruiser-production/2017/03/761f0c70-ffff-4f53-8b29-1c98d17bbbf6/640_madame_claude_000_app2002051400342.jpg) no-repeat;
+  background-position: center -1.5em;
+  background-size: 500px 735px;
+  margin: 0 auto;
+  height:480px;
+  width:480px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:auto;
+}

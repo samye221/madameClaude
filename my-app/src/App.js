@@ -79,7 +79,9 @@ class App extends Component{
 
     if (this.state.pageActive === 'home')
       return (
+        
         <div>
+          <div class="clip-circle"></div>
           <h1>Welcome Weary Traveller. 
   I am Madame Claude and you are about to enter my Intergalactic Palace of Pleasure. Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. Now relax, take it easy and come inside.</h1>
           <button onClick={() => this.setState({pageActive: 'oiehfohz'})} class="btnEnter">Enter the Palace of Pleasure</button>
