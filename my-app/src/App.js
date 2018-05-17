@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ButtonFilterFemale from './Components/buttonFilterFemale'
+// import Form from './Components/buttonFilterFemale'
 import './App.css';
 
 class App extends Component{ 
@@ -7,34 +7,42 @@ class App extends Component{
     super();
     this.state = {
       profiles: [],
+      filters: {
+        gender: 'female', // 'male', 'female', undefined (tous)
+        skinColor: 'white'
+      }
     };
   }
 
 
-componentDidMount(){
-
-fetch(`https://cdn.rawgit.com/akabab/starwars-api/0.2.1/api/all.json`)
-    .then(characters => characters.json())
-    .then(data =>{
-      let profiles = data.map((characters) => {
-        return(
-            <div key={characters.name}> 
-              <p>{characters.name}</p>
-            </div>
-          )
+  componentDidMount(){
+    fetch(`https://cdn.rawgit.com/akabab/starwars-api/0.2.1/api/all.json`)
+      .then(data => data.json())
+      .then(profiles => {
+        this.setState({ profiles: profiles })
       })
-      this.setState({profiles: profiles});
-      console.log(this.state.profiles)
-    })
+  }
+
+  render(){
+    const profiles = this.state.profiles
+      .filter(p => p.gender === this.state.filters.gender)
+      .map(profile => {
+        return (
+          <div key={profile.name}> 
+            <p>{profile.name}</p>
+          </div>
+        )
+      })
+
+    return (
+      <div className= "container">
+        <button onClick={() => this.setState({ filters: { ...this.state.filters, gender: 'male' } })}>male</button>
+        <button onClick={() => this.setState({ filters: { ...this.state.filters, gender: 'female' } })}>female</button>
+        {profiles.length > 0 ? profiles : 'Loading profiles..'}
+      </div>
+    )
+  }
+
 }
 
-render(){
-  return(
-  <div className= "container">
-    {this.state.profiles}
-    <ButtonFilterFemale/>
-  </div>
-  )
-}
-}
 export default App;
