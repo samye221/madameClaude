@@ -17,9 +17,6 @@ class App extends Component{
     }
   }
 
-
-
-
   toggleFilter = (type, value) => this.setState({
     [type]: this.state[type] === value ? undefined : value
   })
@@ -34,7 +31,11 @@ class App extends Component{
 
 selectLover = profilSelected => this.setState({ profilSelected })
 
+
   render(){
+    const actualYear = 34
+    const birthYear = this.state.profiles.born 
+    const age = actualYear - birthYear
     const profiles = this.state.profiles
       .filter(p => {
         if (this.state.gender === 'everything')
@@ -69,11 +70,11 @@ selectLover = profilSelected => this.setState({ profilSelected })
         if(this.state.gender === undefined && this.state.skinColor === undefined && this.state.eyeColor === undefined)
           return false
         return (
-          <div key={profile.image}>
+          <div className = 'character' key={profile.image}>
           <img src={profile.image}/>
             <p>{profile.name}</p>
-            <button onClick = {() => this.setState({pageActive: 'detail', profilSelected: `${profile.name}`})}>Choose me Honey</button>
-
+            <p>Age: {34 - profile.born}</p>
+            <button onClick = {() => this.setState({pageActive: 'detail', profilSelected: `${profile.name}`})}class="btnEnter">Choose me, Honey!</button>
           </div>
         )
       })
@@ -87,7 +88,7 @@ selectLover = profilSelected => this.setState({ profilSelected })
         
         <div>
           <div class="clip-circle"></div>
-          <h1>Welcome Weary Traveller. I am Madame Claude and you are about to enter my Intergalactic Palace of Pleasure. Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. Now relax, take it easy and come inside.</h1>
+          <h1>Welcome Weary Traveller. <br/> <br/>I am <em>Madame Claude</em> and YOU are about to enter my Intergalactic Palace of Pleasure. <br/>Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. <br/><br/> Now relax, take it easy and <em>come inside</em>...</h1>
           <button onClick={() => this.setState({pageActive: 'list'})} class="btnEnter">Enter the Palace of Pleasure</button>
         </div>
       )
@@ -97,25 +98,35 @@ selectLover = profilSelected => this.setState({ profilSelected })
         <div className= "container">
           <button onClick={() => this.setState({pageActive: 'home'})} class="btnEnter">Home</button>
           <br/>
+          <img class='img' src="http://i.radikal.com.tr/620x332/2015/12/23/fft107_mf6820635.Jpeg"/>
+          <h1> Tell me what you're into, darling... </h1>
           <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="male" />
           <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="female" />
           <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="everything">
           Everything
           </Filter>
           <br/>
-          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="light" />
-          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="dark" />
+          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="light">
+          Light Skin
+          </Filter>
+          <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="dark">
+          Dark Skin
+          </Filter>
           <Filter toggle={this.toggleFilter} current={this.state.skinColor} type="skinColor" value="otherSkinColor">
-            Surprise me !
+            Surprise me!
           </Filter>
           <br/>
-          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="brown" />
-          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="blue" />
+          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="brown">
+          Brown Eyes
+          </Filter>
+          <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="blue">
+          Blue Eyes
+          </Filter>
           <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="otherEyeColor">
-            Surprise me !
+            Surprise me!
           </Filter>
 
-          {profiles.length > 0 ? profiles : 'What do you like my dear'}
+          {profiles.length > 0 ? profiles : ''}
         </div>
     )
     else if (this.state.profilSelected){
@@ -137,16 +148,19 @@ selectLover = profilSelected => this.setState({ profilSelected })
     console.log(profil2)
     console.log(profil2.bornLocation)
       return(
-        <div key={profil2.image}>
+        <div className='detail'key={profil2.image}>
+          <button onClick={() => this.setState({pageActive: 'list'})} class="btnEnter">I've changed my mind, go back to menu</button>
+          <br/>
           <img src={profil2.image}/>
             <p>Name: {profil2.name}</p>
-            <p>Height: {profil2.height}</p>
-            <p>Mass: {profil2.mass}</p>
+            <p>Age: {34 - profil2.born}</p>
+            <p>Height: {profil2.height} m</p>
+            <p>Mass: {profil2.mass} kg</p>
             <p>Species: {profil2.species}</p>
             <p>Hair color: {profil2.hairColor}</p>
             <p>Eye color: {profil2.eyeColor}</p>
-            <p>Price: {price},00 Star Coins</p>
-             <button onClick={() => this.setState({pageActive: 'list'})} class="btnEnter">I've changed my mind, go back to menu</button>
+            <p className='price'>Price: {price},00 Star Coins</p>
+            
           </div>
       )}
    }
