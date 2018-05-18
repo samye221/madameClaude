@@ -13,7 +13,9 @@ class App extends Component{
     filters: {
       gender: undefined, // 'male', 'female', undefined (tous)
       skinColor: undefined,
-      eyeColor: undefined
+      eyeColor: undefined,
+      hairColor: undefined,
+      died: undefined,
     }
   }
 
@@ -66,8 +68,23 @@ selectLover = profilSelected => this.setState({ profilSelected })
           return true
         return false
       })
+      .filter(p => {
+        if (this.state.hairColor === 'otherHairColor')
+          if (p.hairColor !== 'black' && p.eyeColor !== 'brown')
+            return true
+        if (this.state.hairColor === undefined)
+          return true
+        if(p.hairColor === this.state.hairColor)
+          return true
+        return false
+      })
+      .filter(p => {
+        if (this.state.died === undefined) return true
+        return p.died !== undefined
+      })
+
       .map(profile => {
-        if(this.state.gender === undefined && this.state.skinColor === undefined && this.state.eyeColor === undefined)
+        if(this.state.gender === undefined && this.state.skinColor === undefined && this.state.eyeColor === undefined && this.state.hairColor === undefined && this.state.died === undefined)
           return false
         return (
           <div className = 'character' key={profile.image}>
@@ -125,7 +142,20 @@ selectLover = profilSelected => this.setState({ profilSelected })
           <Filter toggle={this.toggleFilter} current={this.state.eyeColor} type="eyeColor" value="otherEyeColor">
             Surprise me!
           </Filter>
-
+          <br/>
+          <Filter toggle={this.toggleFilter} current={this.state.hairColor} type="hairColor" value="black">
+          Black Hair
+          </Filter>
+          <Filter toggle={this.toggleFilter} current={this.state.hairColor} type="hairColor" value="brown">
+          Brown Hair
+          </Filter>
+          <Filter toggle={this.toggleFilter} current={this.state.hairColor} type="hairColor" value="otherHairColor">
+          Surprise me!
+          </Filter>
+          <br/>
+          <Filter toggle={this.toggleFilter} current={this.state.died} type="died" value="1">
+          Necro option
+          </Filter>
           {profiles.length > 0 ? profiles : ''}
         </div>
     )
