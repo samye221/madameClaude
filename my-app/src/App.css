@@ -71,3 +71,7 @@ img{
 .img{
   height: 10rem;
 }
+
+h1{
+  text-shadow: -1px 0 #E6C8F8, 0 1px #E6C8F8, 1px 0 #E6C8F8, 0 -1px #E6C8F8;
+}

@@ -105,7 +105,7 @@ selectLover = profilSelected => this.setState({ profilSelected })
         
         <div>
           <div class="clip-circle"></div>
-          <h1>Welcome Weary Traveller. <br/> <br/>I am <em>Madame Claude</em> and YOU are about to enter my Intergalactic Palace of Pleasure. <br/>Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. <br/><br/> Now relax, take it easy and <em>come inside</em>...</h1>
+          <h1>Welcome Weary Traveller! <br/> <br/>I am <em>Madame Claude</em> and YOU are about to enter my Intergalactic Palace of Pleasure. <br/>Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. <br/><br/> Now relax, take it easy and <em>come inside</em>...</h1>
           <button onClick={() => this.setState({pageActive: 'list'})} class="btnEnter">Enter the Palace of Pleasure</button>
         </div>
       )
