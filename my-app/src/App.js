@@ -6,6 +6,7 @@ import './App.css'
 
 class App extends Component{ 
   state = {
+    profilSelected: null,
     pageActive: 'home',
     isToggleOn: true,
     profiles: [],
@@ -30,6 +31,8 @@ class App extends Component{
         this.setState({ profiles: profiles })
       })
   }
+
+selectLover = profilSelected => this.setState({ profilSelected })
 
   render(){
     const profiles = this.state.profiles
@@ -69,6 +72,8 @@ class App extends Component{
           <div key={profile.image}>
           <img src={profile.image}/>
             <p>{profile.name}</p>
+            <button onClick = {() => this.setState({pageActive: 'detail', profilSelected: `${profile.name}`})}>Choose me Honey</button>
+
           </div>
         )
       })
@@ -82,14 +87,16 @@ class App extends Component{
         
         <div>
           <div class="clip-circle"></div>
-          <h1>Welcome Weary Traveller. 
-  I am Madame Claude and you are about to enter my Intergalactic Palace of Pleasure. Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. Now relax, take it easy and come inside.</h1>
-          <button onClick={() => this.setState({pageActive: 'oiehfohz'})} class="btnEnter">Enter the Palace of Pleasure</button>
+          <h1>Welcome Weary Traveller. I am Madame Claude and you are about to enter my Intergalactic Palace of Pleasure. Using the Force - and for a small fee - I shall curate your search for the perfect soulmate throughout all known galaxies, whether you are into human, droid or wookie. Now relax, take it easy and come inside.</h1>
+          <button onClick={() => this.setState({pageActive: 'list'})} class="btnEnter">Enter the Palace of Pleasure</button>
         </div>
       )
-    else 
+
+    else if (this.state.pageActive === 'list')
       return (
         <div className= "container">
+          <button onClick={() => this.setState({pageActive: 'home'})} class="btnEnter">Home</button>
+          <br/>
           <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="male" />
           <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="female" />
           <Filter toggle={this.toggleFilter} current={this.state.gender} type="gender" value="everything">
@@ -111,7 +118,38 @@ class App extends Component{
           {profiles.length > 0 ? profiles : 'What do you like my dear'}
         </div>
     )
-  }
+    else if (this.state.profilSelected){
+    const character = this.state.profilSelected
+    console.log(character)
+    const profil = this.state.profiles.filter(c => c.name === character)
+    const profil2 = profil[0]
+    const imc = Math.round(profil2.mass /(profil2.height^2))
+    const definePrice = (i) => {
+    let result = 0
+    if (i > 40 || i < 17)
+      return result = 100
+    else if (i > 30)
+      return result = 500
+    else
+      return result = 1000
+    }
+    const price = definePrice(imc)
+    console.log(profil2)
+    console.log(profil2.bornLocation)
+      return(
+        <div key={profil2.image}>
+          <img src={profil2.image}/>
+            <p>Name: {profil2.name}</p>
+            <p>Height: {profil2.height}</p>
+            <p>Mass: {profil2.mass}</p>
+            <p>Species: {profil2.species}</p>
+            <p>Hair color: {profil2.hairColor}</p>
+            <p>Eye color: {profil2.eyeColor}</p>
+            <p>Price: {price},00 Star Coins</p>
+             <button onClick={() => this.setState({pageActive: 'list'})} class="btnEnter">I've changed my mind, go back to menu</button>
+          </div>
+      )}
+   }
 
 }
 
