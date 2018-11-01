@@ -1,28 +1,82 @@
-.App {
+body {
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.bg-gradient {
+  overflow: scroll;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(-225deg, #69EACB 0%, #EACCF8 48%, #6654F1 100%);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+h1 {
   color: white;
+  font-weight: 300;
+  text-align: center;
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.App-title {
-  font-size: 1.5em;
+.btnEnter {
+  padding: 10px 15px;
+  color: #715EF1;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-align: center;
+  border: solid 2px white;
+  transition: ease-out 0.2s;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 5px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
-.App-intro {
-  font-size: large;
+.btnEnter:hover {
+  border: solid 2px white;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: ease-in 0.2s;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+
+.clip-circle {
+  background:url(https://cdn.radiofrance.fr/s3/cruiser-production/2017/03/761f0c70-ffff-4f53-8b29-1c98d17bbbf6/640_madame_claude_000_app2002051400342.jpg) no-repeat;
+  background-position: center -1.5em;
+  background-size: 500px 735px;
+  margin: 0 auto;
+  height:480px;
+  width:480px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:auto;
+}
+
+.character{
+  margin-bottom: 50px;
+  
+}
+
+.detail{
+  margin-top: 70px;
+}
+
+.price{
+  font-size: 3rem;
+  color:hotpink;
+}
+
+img{
+  margin-top:50px;
+}
+
+.img{
+  height: 10rem;
+}
+
+h1{
+  text-shadow: -1px 0 #E6C8F8, 0 1px #E6C8F8, 1px 0 #E6C8F8, 0 -1px #E6C8F8;
 }
